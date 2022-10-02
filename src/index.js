@@ -4,7 +4,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 8080;
 const mongoose = require("mongoose");
 // apply middleware
 app.use(morgan("dev"));
@@ -27,7 +27,7 @@ const conect = async () => {
     process.exit(1);
   }
 };
-// conect();
+conect();
 //load typedes and resolver
 
 app.listen(port, () =>
