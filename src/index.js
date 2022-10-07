@@ -14,7 +14,7 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors());
 // app.use("/avatar", express.static(__dirname + "/resoures/avatars"));
 //load methorDb
-// const dbMethors = require("./db/methorDb");
+const dbMethors = require("./dbMethods");
 //conect mongoodb
 console.log(process.env.MONGOOSE_URL);
 const conect = async () => {
@@ -33,10 +33,11 @@ conect();
 // load typedes and resolver
 const typeDefs = require("./typeDevs");
 const resolvers = require("./resolvers");
+
 let server = new ApolloServer({
   typeDefs,
   resolvers,
-  // context: () => ({ dbMethors }),
+  context: () => ({ dbMethors }),
 });
 
 server.start().then((res) => {

@@ -1,17 +1,9 @@
+const path = require("path");
 const { gql } = require("apollo-server-express");
-const typeDefs = gql`
-  type Login {
-    data: User
-    status: Boolean
-    message: String
-  }
-  type User {
-    userName: String
-  }
+const { loadFilesSync } = require("@graphql-tools/load-files");
+const getTypeDefs = loadFilesSync(path.join(__dirname, "./types"));
 
-  #ROOT TYPE
-  type Query {
-    users: [User]
-  }
+const typeDefs = gql`
+  ${getTypeDefs}
 `;
 module.exports = typeDefs;
