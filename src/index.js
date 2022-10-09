@@ -17,7 +17,7 @@ app.use(cors());
 const dbMethors = require("./dbMethods");
 //conect mongoodb
 console.log(process.env.MONGOOSE_URL);
-const conect = async () => {
+const connect = async () => {
   try {
     await mongoose.connect(`${process.env.MONGOOSE_URL}`, {
       useNewUrlParser: true,
@@ -29,7 +29,7 @@ const conect = async () => {
     process.exit(1);
   }
 };
-conect();
+connect();
 // load typedes and resolver
 const typeDefs = require("./typeDevs");
 const resolvers = require("./resolvers");
