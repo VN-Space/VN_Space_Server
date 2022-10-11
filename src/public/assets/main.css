@@ -1,0 +1,17 @@
+.container {
+  max-width: 100% !important;
+  padding-top: 0 !important;
+}
+#nav {
+  background-color: var(--info) !important;
+}
+main {
+  min-height: 100vh;
+  background-color: #e9ecef;
+}
+.navbar-brand {
+  transition: all 0.3s;
+}
+.navbar-brand:hover {
+  text-decoration: underline !important;
+}
