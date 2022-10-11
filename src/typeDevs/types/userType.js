@@ -13,9 +13,17 @@ module.exports = /* GraphQL */ `
     avatar: String
     password: String
     dayOfBirth: String
-    totalPost: Int
-    totalLike: Int
     token: String
+    dress: String
+    background: String
+    phone: Int
+    accept: Boolean
+    verify: Boolean
+    createAt: String
+    updateAt: String
+    provider: String
+    provicerId: String
+    gender: String
   }
 
   #ROOT TYPE
