@@ -14,8 +14,4 @@ export class UserRepository extends BaseController {
     public async createUser(data: IUserRegister) {
         return UserModel.create(data)
     }
-    
-    public validatePassword(currentPassword: string) {
-        UserModel
-    }
 }

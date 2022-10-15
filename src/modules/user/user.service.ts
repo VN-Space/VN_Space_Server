@@ -4,7 +4,6 @@ import { UserRepository } from "./user.repository";
 
 export class UserService extends BaseController {
     private readonly userRepository: UserRepository
-    
     constructor() {
         super();
         this.userRepository = new UserRepository()

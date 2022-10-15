@@ -5,7 +5,6 @@ import addError from 'ajv-errors';
 
 import { BaseController, FieldErrorException } from '../common';
 import { ERROR_CODE } from '../constants';
-import { logger } from "../configs";
 
 class Validator extends BaseController {
     private readonly ajv: Ajv;

@@ -1,4 +1,4 @@
-import { Document, model, PaginateModel, Schema, Types } from 'mongoose';
+import { Document, model, PaginateModel, Schema } from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 import { GENDER_OPTION, IUser, PROVIDER_OPTION } from './user.interface';
 import bcrypt from "bcrypt";
@@ -53,6 +53,10 @@ const UserSchema: Schema = new Schema(
             default: null
         },
         isVerify: {
+            type: Boolean,
+            default: false
+        },
+        isRoot: {
             type: Boolean,
             default: false
         },
