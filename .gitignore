@@ -100,6 +100,8 @@ yarn.lock
 
 build
 
+.env
+
 # and uncomment the following lines
 # .pnp.*
 
