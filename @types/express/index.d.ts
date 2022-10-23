@@ -3,9 +3,10 @@ import { Express } from 'express'
 declare global {
     declare namespace Express {
         interface Request {
-            loggedUser?: {
+            loggedUser: {
                 userId: string,
-                email: string
+                email: string,
+                refreshKey: string
             }
         }
     }

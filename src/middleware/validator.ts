@@ -14,7 +14,6 @@ class Validator extends BaseController {
             allErrors: true,
             coerceTypes: true,
             useDefaults: true,
-            removeAdditional: true,
             code: {es5: true},
             $data: true,
         });

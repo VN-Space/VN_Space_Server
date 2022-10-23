@@ -4,7 +4,7 @@ export enum TOKEN_TYPE {
 }
 
 export interface IAuth {
-    refreshToken: string
+    token: string
     userId: string
 }
 

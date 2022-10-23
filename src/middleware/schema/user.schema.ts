@@ -1,5 +1,5 @@
 import { JSONSchemaType } from 'ajv';
-import { IUserRegister, PROVIDER_OPTION } from "../../modules";
+import { IUserRegister } from "../../modules";
 
 export const validateRegister: JSONSchemaType<IUserRegister> = {
     type: 'object',
@@ -19,13 +19,9 @@ export const validateRegister: JSONSchemaType<IUserRegister> = {
             type: 'string',
             minLength: 8,
             maxLength: 20
-        },
-        provider: {
-            type: "string",
-            enum: Object.values(PROVIDER_OPTION),
-            nullable: true
         }
     },
+    additionalProperties: false,
     errorMessage: {
         type: 'Invalid input',
         properties: {

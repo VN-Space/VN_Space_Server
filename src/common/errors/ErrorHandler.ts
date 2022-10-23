@@ -1,21 +1,40 @@
 import { Response } from 'express';
-import { BaseError } from '.';
-import { ERROR_CODE } from '../../constants';
+import { BaseError, HttpStatusCode } from '.';
+import { ERROR_CODE } from "../../constants";
 
-export class ErrorHandler {
-    public static handleError(err: BaseError, res: Response): Response<any, Record<string, any>> {
-        console.error('ERROR_MESSAGE', err);
-        return res.status(err.httpCode || 400).json({
-            status: 'error',
-            message: err.message ? err.message : 'Unknown error',
-            code: err.code || ERROR_CODE.E111
-        });
-    }
-    
-    public static isTrustedError(error: Error): boolean {
+class ErrorHandler {
+    public isTrustedError(error: Error): boolean {
         if (error instanceof BaseError) {
-            return error.isOperational;
+            return <boolean>error?.isOperational;
         }
         return false;
     }
+    
+    public handleError(err: BaseError, res: Response) {
+        if (this.isTrustedError(err) && res) {
+            this.handleTrustedError(err as BaseError, res);
+        } else {
+            this.handleCriticalError(err, res);
+        }
+    }
+    
+    private handleTrustedError(err: BaseError, res: Response) {
+        res.status(err.httpCode).json({
+            status: 'error',
+            message: err.message ? err.message : 'Unknown error',
+            code: err.code || ERROR_CODE.E111
+        })
+    }
+    
+    private handleCriticalError(err: BaseError, res?: Response) {
+        if (res) {
+            res.status(err.httpCode).json({
+                status: 'error',
+                message: err.message ? err.message : 'Critical error',
+                code: err.code || ERROR_CODE.E111
+            })
+        }
+    }
 }
+
+export const errorHandler = new ErrorHandler();

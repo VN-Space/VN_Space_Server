@@ -1,8 +1,8 @@
 import { Document } from 'mongoose'
 
 export enum GENDER_OPTION {
-    MEN = 'men',
-    WOMEN = 'women',
+    MAN = 'man',
+    WOMAN = 'woman',
     UNISEX = 'unisex',
     BOTH = 'both'
 }
@@ -21,13 +21,13 @@ export interface IUser extends Document {
     fullName: string
     gender: GENDER_OPTION,
     provider: PROVIDER_OPTION
+    isActive: boolean
 }
 
 export interface IUserRegister {
     email: string
     password: string
     fullName: string
-    provider: PROVIDER_OPTION
 }
 
 export interface ISignIn {
