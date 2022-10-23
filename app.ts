@@ -1,15 +1,15 @@
-import { App } from './src/app-config';
-import { mongoURL, port } from "./src/configs";
+import { AppConfig } from './src/app-config';
+import { logger, mongoURL, port } from "./src/configs";
 
-const startServer = () => {
+const startServer = async () => {
     try {
-        const app = new App(mongoURL);
+        const app = new AppConfig(mongoURL);
         app.getApp.listen(port, () => {
-            console.log(`[HTTP] Server listening in port ${port}.`);
+            logger.info(`[HTTP] Server listening in port ${port}.`);
         });
     } catch {
         process.exit(1);
     }
 };
 
-startServer();
+startServer().then();

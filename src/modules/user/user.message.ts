@@ -8,7 +8,5 @@ export enum USER_ERROR_CODE {
 export const USER_ERROR_MESSAGE = {
     [USER_ERROR_CODE.U_001]: 'Email này đã tồn tại.',
     [USER_ERROR_CODE.U_002]: 'Có lỗi xảy ra khi tạo tài khoản.',
-    [USER_ERROR_CODE.U_003]: 'Mật khẩu hoặc tài khoản không chính xác.',
-    [USER_ERROR_CODE.U_004]: 'Invalid token',
-    
+    [USER_ERROR_CODE.U_003]: 'Có lỗi xảy ra khi lấy danh sách người dùng',
 };
