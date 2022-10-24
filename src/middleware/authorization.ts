@@ -11,13 +11,14 @@ import { AUTH_ERROR_CODE, AUTH_ERROR_MESSAGE, AuthService, TOKEN_TYPE } from "..
 
 export class Authorization extends BaseController {
     private readonly authService: AuthService
+    
     constructor() {
         super();
         this.authService = new AuthService()
     }
     
-    private getToken(req: Request) {
-        if (!req.headers.authorization || !req.headers.authorization.startsWith('Bearer')) throw new UnauthorizedException(AUTH_ERROR_CODE.A_001, AUTH_ERROR_MESSAGE[AUTH_ERROR_CODE.A_001], req)
+    private getToken(req: Request): string | false {
+        if (!req.headers.authorization || !req.headers.authorization.startsWith('Bearer')) return false
         return req.headers.authorization.split(" ")[1]
     }
     
@@ -65,6 +66,8 @@ export class Authorization extends BaseController {
     get isValidAccessTokenGraphql() {
         return async ({req}: ExpressContextFunctionArgument) => {
             const token = this.getToken(req)
+            if (!token) return req
+    
             const decoded = this.authService.verifyToken(token, TOKEN_TYPE.ACCESS_TOKEN)
             if (!decoded) {
                 throw new GraphQLError(AUTH_ERROR_MESSAGE[AUTH_ERROR_CODE.A_001], {
