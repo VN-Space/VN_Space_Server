@@ -78,6 +78,9 @@ export class AppConfig extends BaseController {
                 maxSize: Math.pow(2, 20) * 100,
                 ttl: 60 * 60
             }),
+            persistedQueries: {
+                ttl: 900 // 15 minutes
+            },
             logger,
             plugins: [
                 ApolloServerPluginInlineTrace(),
